@@ -7,6 +7,8 @@ import lombok.Setter;
 import javax.persistence.*;
 
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 @Entity
@@ -19,6 +21,9 @@ public class Item {
     private Long id;
 
     private String description;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    Map<String, Item> entitytMap = new HashMap<String, Item>();
 
 //    @OneToMany(cascade= CascadeType.ALL, fetch = FetchType.EAGER)
 //    private Set<String> tags;
