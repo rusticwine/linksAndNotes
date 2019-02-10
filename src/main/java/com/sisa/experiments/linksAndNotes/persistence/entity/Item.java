@@ -1,5 +1,8 @@
 package com.sisa.experiments.linksAndNotes.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
@@ -22,6 +25,9 @@ public class Item {
 
     private String description;
 
+//    @JsonIgnore
+@JsonBackReference
+//    @JsonManagedReference
     @ManyToMany(cascade = CascadeType.ALL)
     Map<String, Item> entitytMap = new HashMap<String, Item>();
 
