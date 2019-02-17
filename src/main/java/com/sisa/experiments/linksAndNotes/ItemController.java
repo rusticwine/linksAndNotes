@@ -34,7 +34,7 @@ public class ItemController {
     public Item linkByItem(@PathParam("id") final Long id, @RequestBody final Item itemToAdd) {
         System.out.println("AddItemByItem#post, id, item: " + id + ", " + itemToAdd.toString());
         Item item = repo.findById(id).get();
-        item.getEntitytMap().put(itemToAdd.getDescription(), itemToAdd);
+        item.getItemReference().getEntitytMap().put(itemToAdd.getDescription(), itemToAdd);
 //        repo.save(item);
         return item;
     }
@@ -44,7 +44,7 @@ public class ItemController {
         /**/
         Item item = repo.findById(id).get();
         Item itemToAdd = repo.findById(idToAdd).get();
-        item.getEntitytMap().put(itemToAdd.getDescription(), itemToAdd);
+        item.getItemReference().getEntitytMap().put(itemToAdd.getDescription(), itemToAdd);
         repo.save(item);
         return item;
         /**/
