@@ -5,7 +5,7 @@ import com.sisa.experiments.linksAndNotes.repository.ItemCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.PathParam;
+//import javax.ws.rs.PathParam;
 
 
 @RestController
@@ -31,7 +31,7 @@ public class ItemController {
     }
 
     @PostMapping("/{id}/link")
-    public Item linkByItem(@PathParam("id") final Long id, @RequestBody final Item itemToAdd) {
+    public Item linkByItem(@PathVariable("id") final Long id, @RequestBody final Item itemToAdd) {
         System.out.println("AddItemByItem#post, id, item: " + id + ", " + itemToAdd.toString());
         Item item = repo.findById(id).get();
         item.getItemReference().getEntitytMap().put(itemToAdd.getDescription(), itemToAdd);
