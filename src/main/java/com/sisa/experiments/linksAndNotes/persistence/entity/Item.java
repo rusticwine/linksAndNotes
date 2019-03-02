@@ -31,7 +31,7 @@ public class Item {
 //    @JsonManagedReference
 //    @ManyToMany(cascade = CascadeType.ALL)
 //    Map<String, Item> entitytMap = new HashMap<String, Item>();
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
 //    @JsonInclude(JsonInclude.Include.NON_NULL)
     private ItemReference itemReference;
 

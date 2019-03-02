@@ -1,6 +1,7 @@
 package com.sisa.experiments.linksAndNotes;
 
 import com.sisa.experiments.linksAndNotes.persistence.entity.Item;
+import com.sisa.experiments.linksAndNotes.persistence.entity.ItemReference;
 import com.sisa.experiments.linksAndNotes.repository.ItemCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -44,9 +45,12 @@ public class ItemController {
         /**/
         Item item = repo.findById(id).get();
         Item itemToAdd = repo.findById(idToAdd).get();
+        if (item.getItemReference() == null) {
+            item.setItemReference(new ItemReference());
+        }
         item.getItemReference().getEntitytMap().put(itemToAdd.getDescription(), itemToAdd);
         repo.save(item);
-        return item;
+         return item;
         /**/
 //        return null;
     }
