@@ -27,8 +27,8 @@ public class Item {
     private String description;
 
 //    @JsonIgnore
-//@JsonBackReference
-    @JsonManagedReference
+@JsonBackReference
+//    @JsonManagedReference
 //    @ManyToMany(cascade = CascadeType.ALL)
 //    Map<String, Item> entitytMap = new HashMap<String, Item>();
     @OneToOne(cascade = CascadeType.ALL)
