@@ -16,7 +16,7 @@ public class ItemReference {
     private Long id;
 
     private String koma;
-//    @JsonBackReference
+    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL)
     Map<String, Item> entitytMap = new HashMap<String, Item>();
 }
