@@ -10,6 +10,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+import java.io.Serializable;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +18,7 @@ import java.util.Set;
 
 @Entity
 @Data
-public class Item {
+public class Item implements Serializable {
 
     @Id
     @GeneratedValue
@@ -27,7 +28,7 @@ public class Item {
     private String description;
 
 //    @JsonIgnore
-@JsonBackReference
+//@JsonBackReference
 //    @JsonManagedReference
 //    @ManyToMany(cascade = CascadeType.ALL)
 //    Map<String, Item> entitytMap = new HashMap<String, Item>();
