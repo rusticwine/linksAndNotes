@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.sisa.experiments.linksAndNotes.ItemWrapper;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.net.URI;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -30,11 +32,12 @@ public class Item implements Serializable {
 //    @JsonIgnore
 //@JsonBackReference
 //    @JsonManagedReference
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    Map<String, Item> entitytMap = new HashMap<String, Item>();
-    @OneToOne(cascade = CascadeType.ALL)
-//    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private ItemReference itemReference;
+    @OneToMany(cascade = CascadeType.ALL)
+    Set<ItemWrapper> entitytMap;
+
+//    @OneToOne(cascade = CascadeType.ALL)
+//    private ItemReference itemReference;
+
 
 //    @OneToMany(cascade= CascadeType.ALL, fetch = FetchType.EAGER)
 //    private Set<String> tags;

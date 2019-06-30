@@ -6,6 +6,8 @@ import com.sisa.experiments.linksAndNotes.repository.ItemCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
+
 //import javax.ws.rs.PathParam;
 
 
@@ -35,7 +37,8 @@ public class ItemController {
     public Item linkByItem(@PathVariable("id") final Long id, @RequestBody final Item itemToAdd) {
         System.out.println("AddItemByItem#post, id, item: " + id + ", " + itemToAdd.toString());
         Item item = repo.findById(id).get();
-        item.getItemReference().getEntitytMap().put(itemToAdd.getDescription(), itemToAdd);
+        //item.getItemReference().getEntitytMap().put(itemToAdd.getDescription(), itemToAdd);
+        item.getEntitytMap().add(new ItemWrapper(itemToAdd));
 //        repo.save(item);
         return item;
     }
@@ -45,10 +48,10 @@ public class ItemController {
         /**/
         Item item = repo.findById(id).get();
         Item itemToAdd = repo.findById(idToAdd).get();
-        if (item.getItemReference() == null) {
-            item.setItemReference(new ItemReference());
+        if (item.getEntitytMap() == null) {
+            item.setEntitytMap(new HashSet<>());
         }
-        item.getItemReference().getEntitytMap().put(itemToAdd.getDescription(), itemToAdd);
+        item.getEntitytMap().add(new ItemWrapper(itemToAdd));
         repo.save(item);
          return item;
         /**/
