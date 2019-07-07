@@ -1,7 +1,6 @@
 package com.sisa.experiments.linksAndNotes;
 
 import com.sisa.experiments.linksAndNotes.persistence.entity.Item;
-import com.sisa.experiments.linksAndNotes.persistence.entity.ItemReference;
 import com.sisa.experiments.linksAndNotes.repository.ItemCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -37,8 +36,8 @@ public class ItemController {
     public Item linkByItem(@PathVariable("id") final Long id, @RequestBody final Item itemToAdd) {
         System.out.println("AddItemByItem#post, id, item: " + id + ", " + itemToAdd.toString());
         Item item = repo.findById(id).get();
-        //item.getItemReference().getEntitytMap().put(itemToAdd.getDescription(), itemToAdd);
-        item.getEntitytMap().add(new ItemWrapper(itemToAdd));
+        //item.getItemReference().getEntityMap().put(itemToAdd.getDescription(), itemToAdd);
+        item.getEntityMap().add(itemToAdd);
 //        repo.save(item);
         return item;
     }
@@ -48,10 +47,10 @@ public class ItemController {
         /**/
         Item item = repo.findById(id).get();
         Item itemToAdd = repo.findById(idToAdd).get();
-        if (item.getEntitytMap() == null) {
-            item.setEntitytMap(new HashSet<>());
+        if (item.getEntityMap() == null) {
+            item.setEntityMap(new HashSet<>());
         }
-        item.getEntitytMap().add(new ItemWrapper(itemToAdd));
+        item.getEntityMap().add(itemToAdd);
         repo.save(item);
          return item;
         /**/
