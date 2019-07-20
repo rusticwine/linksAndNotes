@@ -15,10 +15,7 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 import java.net.URI;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Data
@@ -30,4 +27,5 @@ public class Item extends AbstractItem implements Serializable {
 //    @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL)
     Set<AbstractItem> entityMap;
+
 }
