@@ -28,4 +28,17 @@ public class Item extends AbstractItem implements Serializable {
     @OneToMany(cascade = CascadeType.ALL)
     Set<AbstractItem> entityMap;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Item)) return false;
+        if (!super.equals(o)) return false;
+        Item item = (Item) o;
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode());
+    }
 }
