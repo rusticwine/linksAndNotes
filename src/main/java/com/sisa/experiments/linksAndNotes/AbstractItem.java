@@ -1,5 +1,7 @@
 package com.sisa.experiments.linksAndNotes;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -41,4 +43,7 @@ public abstract class AbstractItem {
     public int hashCode() {
         return Objects.hash(getDescription(), getUrl());
     }
+
+    @JsonBackReference
+    public abstract Set<AbstractItem> getEntityMap();
 }

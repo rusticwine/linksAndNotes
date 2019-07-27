@@ -1,21 +1,15 @@
 package com.sisa.experiments.linksAndNotes.persistence.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sisa.experiments.linksAndNotes.AbstractItem;
-import com.sisa.experiments.linksAndNotes.ItemWrapper;
-import com.sisa.experiments.linksAndNotes.ItemWrapper2;
-import lombok.AccessLevel;
-import lombok.Setter;
 import lombok.Data;
 
-import javax.persistence.*;
-
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.io.Serializable;
-import java.net.URI;
-import java.util.*;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Data
@@ -41,4 +35,9 @@ public class Item extends AbstractItem implements Serializable {
     public int hashCode() {
         return Objects.hash(super.hashCode());
     }
+//
+//    @Override
+//    public Set<AbstractItem> getEntityMap() {
+//        return entityMap;
+//    }
 }
