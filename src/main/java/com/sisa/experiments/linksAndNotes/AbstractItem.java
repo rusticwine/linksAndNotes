@@ -44,6 +44,6 @@ public abstract class AbstractItem {
         return Objects.hash(getDescription(), getUrl());
     }
 
-    @JsonBackReference
-    public abstract Set<AbstractItem> getEntityMap();
+//    @JsonBackReference
+//    public abstract Set<AbstractItem> getEntityMap();
 }

@@ -1,6 +1,9 @@
 package com.sisa.experiments.linksAndNotes.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonRawValue;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.sisa.experiments.linksAndNotes.AbstractItem;
 import lombok.Data;
 
@@ -16,7 +19,7 @@ import java.util.Set;
 public class Item extends AbstractItem implements Serializable {
 
 
-//    @JsonIgnore
+    @JsonIgnore
 //@JsonBackReference
 //    @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL)
@@ -40,4 +43,28 @@ public class Item extends AbstractItem implements Serializable {
 //    public Set<AbstractItem> getEntityMap() {
 //        return entityMap;
 //    }
+
+//    @JsonValue
+//    public String getJsonChildren() {
+//        System.out.println("test1");
+//        return "test1:test1";
+//    }
+
+    @JsonRawValue
+    public String getJsonChildren() {
+        if (entityMap != null) {
+            StringBuilder sb = new StringBuilder(20 + (entityMap != null ? entityMap.size() : 0) * 30);
+            sb.append("{");
+            for (AbstractItem item : entityMap) {
+                sb.append("\"id\": \"").append(item.getId()).append("\"").append(",");
+                sb.append("\"description\": \"").append(item.getDescription()).append("\"").append(",");
+                sb.append("\"url\": \"").append(item.getUrl()).append("\"");
+            }
+
+            sb.append("}");
+            return sb.toString();
+        }
+        System.out.println("test2");
+        return "{}";
+    }
 }
