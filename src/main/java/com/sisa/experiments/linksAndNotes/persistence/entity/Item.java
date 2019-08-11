@@ -52,16 +52,18 @@ public class Item extends AbstractItem implements Serializable {
 
     @JsonRawValue
     public String getJsonChildren() {
-        if (entityMap != null) {
+        if (entityMap != null && entityMap.size() > 0) {
             StringBuilder sb = new StringBuilder(20 + (entityMap != null ? entityMap.size() : 0) * 30);
-            sb.append("{");
+            sb.append("[");
             for (AbstractItem item : entityMap) {
+                sb.append("{");
                 sb.append("\"id\": \"").append(item.getId()).append("\"").append(",");
                 sb.append("\"description\": \"").append(item.getDescription()).append("\"").append(",");
                 sb.append("\"url\": \"").append(item.getUrl()).append("\"");
+                sb.append("},");
             }
-
-            sb.append("}");
+            sb.deleteCharAt(sb.length()-1);
+            sb.append("]");
             return sb.toString();
         }
         System.out.println("test2");
